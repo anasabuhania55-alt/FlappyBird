@@ -19,16 +19,19 @@ public class BirdController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.linearVelocity = Vector2.up * jumpForce;
+
+            SoundManager.Instance.PlayJump();
         }
     }
 
-void OnCollisionEnter2D(Collision2D collision)
-{
-    if (isDead) return;
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isDead) return;
 
-    isDead = true;
+        isDead = true;
 
-    FindFirstObjectByType<GameManager>().GameOver();
+        SoundManager.Instance.PlayHit();
 
-}
+        FindFirstObjectByType<GameManager>().GameOver();
+    }
 }

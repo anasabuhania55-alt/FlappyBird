@@ -12,7 +12,10 @@ public class GameManager : MonoBehaviour
     public void AddScore()
     {
         score++;
+
         scoreText.text = score.ToString();
+
+        SoundManager.Instance.PlayScore();
     }
 
     public void GameOver()
