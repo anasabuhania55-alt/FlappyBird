@@ -28,7 +28,16 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
+
         ButtonSound.Instance.PlayClick();
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ReturnToMainMenu()
+    {
+        Time.timeScale = 1f;
+        ButtonSound.Instance.PlayClick();
+        SceneManager.LoadScene("MainMenu");
     }
 }

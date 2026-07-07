@@ -4,11 +4,11 @@ public class ButtonSound : MonoBehaviour
 {
     public static ButtonSound Instance;
 
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
-    void Awake()
+    private void Awake()
     {
-        if (Instance != null)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
@@ -17,8 +17,6 @@ public class ButtonSound : MonoBehaviour
         Instance = this;
 
         DontDestroyOnLoad(gameObject);
-
-        audioSource = GetComponent<AudioSource>();
     }
 
     public void PlayClick()
