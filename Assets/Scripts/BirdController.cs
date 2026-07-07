@@ -22,9 +22,13 @@ public class BirdController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        isDead = true;
-        Debug.Log("Game Over");
-    }
+void OnCollisionEnter2D(Collision2D collision)
+{
+    if (isDead) return;
+
+    isDead = true;
+
+    FindFirstObjectByType<GameManager>().GameOver();
+
+}
 }
