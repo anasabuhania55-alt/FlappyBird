@@ -1,20 +1,28 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-[RequireComponent(typeof(Button))]
 public class ButtonSound : MonoBehaviour
 {
-    private Button button;
+    public static ButtonSound Instance;
 
-    private void Awake()
+    private AudioSource audioSource;
+
+    void Awake()
     {
-        button = GetComponent<Button>();
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-        button.onClick.AddListener(PlayButtonSound);
+        Instance = this;
+
+        DontDestroyOnLoad(gameObject);
+
+        audioSource = GetComponent<AudioSource>();
     }
 
-    private void PlayButtonSound()
+    public void PlayClick()
     {
-        SoundManager.Instance.PlayButton();
+        audioSource.Play();
     }
 }

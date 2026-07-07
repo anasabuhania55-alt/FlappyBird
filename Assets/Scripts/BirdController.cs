@@ -4,6 +4,9 @@ public class BirdController : MonoBehaviour
 {
     public float jumpForce = 5f;
 
+    public AudioSource jumpSound;
+    public AudioSource hitSound;
+
     private Rigidbody2D rb;
     private bool isDead = false;
 
@@ -20,7 +23,7 @@ public class BirdController : MonoBehaviour
         {
             rb.linearVelocity = Vector2.up * jumpForce;
 
-            SoundManager.Instance.PlayJump();
+            jumpSound.Play();
         }
     }
 
@@ -30,7 +33,7 @@ public class BirdController : MonoBehaviour
 
         isDead = true;
 
-        SoundManager.Instance.PlayHit();
+        hitSound.Play();
 
         FindFirstObjectByType<GameManager>().GameOver();
     }

@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text scoreText;
     public GameObject gameOverPanel;
 
+    public AudioSource buttonClickSound;
     private int score = 0;
 
     public void AddScore()
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
 
         scoreText.text = score.ToString();
 
-        SoundManager.Instance.PlayScore();
+        
     }
 
     public void GameOver()
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
+        ButtonSound.Instance.PlayClick();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
